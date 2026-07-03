@@ -21,7 +21,6 @@ module ahb2apb_fsm(input clk, rst_n,
 		   st_nxt_s = AHB_IDLE;
 		   //apb_error_r = 'b0;
 		   fsm_ready = 'b1; //FIXME
-       //For pull command
 		   case(st_cur_r)
 			   AHB_IDLE : begin
 				   fsm_ready_r= 'b1;
