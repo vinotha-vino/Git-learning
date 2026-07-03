@@ -10,7 +10,7 @@ module ahb2apb_fsm(input clk, rst_n,
 
 	   //LOCAL SIGNALS AND STATES
 	   states_t st_cur_r, st_nxt_s;
-	   
+
 	   reg error_r, fsm_ready_r;
 
 	   reg [`WIDTH-1:0] HWDATA_s, HWDATA_r;
@@ -20,7 +20,7 @@ module ahb2apb_fsm(input clk, rst_n,
 	   always @(st_cur_r or HTRANS or PREADY or PSLVERR) begin
 		   st_nxt_s = AHB_IDLE;
 		   //apb_error_r = 'b0;
-		   //fsm_ready = 'b1;
+		   fsm_ready = 'b1; //FIXME
 		   case(st_cur_r)
 			   AHB_IDLE : begin
 				   fsm_ready_r= 'b1;
@@ -84,7 +84,7 @@ module ahb2apb_fsm(input clk, rst_n,
 			   HWDATA_r <= HWDATA_s;
 			   HSTRB_r <= HSTRB_s;
 		   end
-	   end 
+	   end
 
 	   //OUTPUT ASSIGNMENTS
 	   assign fsm_ready = fsm_ready_r;
